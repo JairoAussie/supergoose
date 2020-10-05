@@ -1,0 +1,53 @@
+### GET /posts
+GET http://localhost:3009/posts HTTP/1.1
+
+### GET /posts/1
+GET http://localhost:3009/posts/5eb5d1ce15a0a339f5a69022 HTTP/1.1
+
+### with invalid id
+GET http://localhost:3009/posts/9 HTTP/1.1
+
+### POST /posts
+POST http://localhost:3009/posts HTTP/1.1
+content-type: application/json
+
+{
+    "title": "a new post",
+    "username": "tester",
+	"category": "code",
+	"content": "this is a new post about code"
+}
+
+### POST /posts (with no category)
+POST http://localhost:3009/posts HTTP/1.1
+content-type: application/json
+
+{
+    "title": "a new post",
+    "username": "tester",
+	"content": "this is a new post about code"
+}
+
+### DELETE /posts/id 
+DELETE http://localhost:3009/posts/5eb5d1ce15a0a339f5a69022 HTTP/1.1
+
+### PUT /posts/1
+PUT http://localhost:3009/posts/5eb5d1db15a0a339f5a69023 HTTP/1.1
+content-type: application/json
+
+{
+    "title": "updated post",
+    "username": "tester",
+	"category": "general",
+	"content": "this post has been updated"
+}
+
+### PUT /posts/1 (no category)
+PUT http://localhost:3009/posts/1 HTTP/1.1
+content-type: application/json
+
+{
+    "title": "updated post",
+    "username": "tester",
+	"content": "this post has been updated"
+}
