@@ -70,7 +70,7 @@ function tearDownData() {
 
 
 
-describe.only('1. getAllPosts with one post', () => {
+describe('1. getAllPosts with one post', () => {
     it('should get a post if one exists', async function () {
         let req = {
             query: {}
@@ -90,7 +90,7 @@ describe.only('1. getAllPosts with one post', () => {
     });
 });
 
-describe.only('2.getPostById', () => {
+describe('2.getPostById', () => {
     it('username of first post should be tester', async function () {
         // Set up req with postId
         let req = {
@@ -105,7 +105,7 @@ describe.only('2.getPostById', () => {
 });
 
 // addPost
-describe.only('3.addPost', () => {
+describe('3.addPost', () => {
     it('should add a post', async function () {
         // define a req object with expected structure
         const req = {
@@ -123,7 +123,7 @@ describe.only('3.addPost', () => {
 });
 
 // deletePost
-describe.only('4.deletePost', () => {
+describe('4.deletePost', () => {
     it('should delete the specified post', async function () {
         await utilities.deletePost(postId).exec();
         await Post.findById(postId).exec((err, post) => {
@@ -153,96 +153,21 @@ describe('5.updatePost', () => {
     });
 });
 
-// describe('getAllPosts with one post', () => {
-//     it('should get a post if one exists', () => {
-//         expect(Object.keys(utilities.getAllPosts({
-//             query: {}
-//         })).length).toBe(1);
-//     });
-//     it('username of first post should be tester', () => {
-//         expect(utilities.getAllPosts({
-//             query: {}
-//         })["1"].username).toBe('tester');
-//     });
-// });
 
-// describe('getPostById', () => {
-//     // Define a req object with the expected structure to pass a parameter
-//     const req = {
-//         params: {
-//             id: "1"
-//         }
-//     }
-//     it('username of post with id 1 should be tester', () => {
-//         expect(utilities.getPostById(req).username).toBe('tester');
-//     });
-// });
-
-// // addPost
-// describe('addPost', () => {
-//     it('should add a post', () => {
-//         // define a req object with expected structure
-//         const req = {
-//             body: {
-//                 title: "Another post",
-//                 username: "tester",
-//                 content: "This is another blog post!",
-//                 category: ""
-//             }
-//         }
-//         let post = utilities.addPost(req);
-//         expect(post.title).toBe(req.body.title);
-//     });
-// });
-
-// // deletePost
-// describe('deletePost', () => {
-//     it('should delete the specified post', () => {
-//         let id = "1";
-//         let blogPosts = utilities.deletePost(id);
-//         let ids = Object.keys(blogPosts);
-//         expect(ids.includes("1")).toBe(false);
-//     });
-// });
-
-// // updatePost
-// describe('updatePost', () => {
-//     it('should update a post', () => {
-//         // set up a req object
-//         const req = {
-//             params: {
-//                 id: "2"
-//             },
-//             body: {
-//                 title: "Updated post",
-//                 username: "tester",
-//                 content: "This is an updated blog post!",
-//                 category: ""
-//             }
-//         };
-//         let post = utilities.updatePost(req);
-//         expect(post.title).toBe(req.body.title);
-//     });
-// });
-
-// // Setup and tear down functions
-// function setupData() {
-//     let testPostData = {};
-//     let testPost = {};
-//     let date = Date.now();
-//     testPost.title = 'Test post 1';
-//     testPost.username = 'tester';
-//     testPost.create_date = date;
-//     testPost.modified_date = date;
-//     testPost.content = 'This is the first test post';
-//     testPost.category = '';
-//     testPostData["1"] = testPost;
-
-//     fs.writeFileSync(testDataFileForWrite, JSON.stringify(testPostData));
-//     utilities.setDataFile(testDataFile);
-// }
-
-// function tearDownData() {
-//     let testPostData = {};
-//     fs.writeFileSync(testDataFileForWrite, JSON.stringify(testPostData));
-// }
+describe('addComment', () => {
+    it('should add a comment to a post', async function () {
+        const req = {
+            params: {
+                postId: postId
+            },
+            body: {
+				username: 'tester2',
+                comment: 'This is a comment on the post'
+            }
+        };
+        await utilities.addComment(req).then((post) => {
+            expect(post.comments.length).toBe(1);
+            expect(post.comments[0].username).toBe('tester2');
+        })
+    });
+});

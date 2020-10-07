@@ -23,7 +23,16 @@ const Post = new Schema({
         type: String,
         required: true
     },
-    category: String
+    category: String,
+    comments: [{
+        username: String,
+        comment: String
+    }]
 });
+
+Post.methods.narrativeComments = function() {
+    return this.comments.map((com) => `${com.username} says that ${com.comment}`)
+}
+
 
 module.exports = mongoose.model('Post', Post);

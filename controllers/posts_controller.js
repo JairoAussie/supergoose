@@ -3,7 +3,8 @@ const {
   getPostById,
   addPost,
   deletePost,
-  updatePost
+  updatePost,
+  addComment
 } = require('../utils/posts_utilities');
 
 const getPosts = function (req, res) {
@@ -47,6 +48,16 @@ const makePost = function (req, res) {
   });
 };
 
+const makeComment = function (req, res) {
+  addComment(req).then((post) => {
+    console.log(post.narrativeComments())
+    res.status(201).send(post)
+  }).catch((err) => {
+    res.status(500).json({err})
+  })
+
+}
+
 const removePost = function (req, res) {
   // execute the query from deletePost
   deletePost(req.params.id).exec((err) => {
@@ -80,5 +91,6 @@ module.exports = {
   getPost,
   makePost,
   removePost,
-  changePost
+  changePost,
+  makeComment
 };

@@ -24,6 +24,21 @@ const addPost = function (req) {
   return new Post(req.body);
 };
 
+const addComment = async function (req) {
+  let post = await Post.findById(req.params.postId)
+
+  const newComment = {
+    username: req.body.username,
+    comment: req.body.comment
+  }
+
+  post.comments.push(newComment);
+
+  return Post.findByIdAndUpdate(req.params.postId, post, {
+    new: true
+  })
+}
+
 // delete post
 // returns a query
 const deletePost = function (id) {
@@ -59,5 +74,6 @@ module.exports = {
   getPostById,
   addPost,
   deletePost,
-  updatePost
+  updatePost,
+  addComment
 }

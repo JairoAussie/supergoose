@@ -5,7 +5,8 @@ const {
   getPost,
   makePost,
   removePost,
-  changePost
+  changePost,
+  makeComment
 } = require('../controllers/posts_controller');
 
 // READ
@@ -32,5 +33,7 @@ router.delete('/:id', removePost);
 // PUT on 'posts/:id'
 // Updates a post with id
 router.put('/:id', changePost);
+
+router.post('/:postId/comments', makeComment)
 
 module.exports = router;
