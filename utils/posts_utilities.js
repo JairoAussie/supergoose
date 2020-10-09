@@ -6,7 +6,12 @@ const Post = require('../models/post')
 
 // get all posts
 const getAllPosts = function (req) {
-  return Post.find()
+  //localhost:3000/posts?category=coding
+  if (req.query.category)
+    return Post.findByCategory(req.query.category)
+  else
+  //localhost:3000/posts
+    return Post.find()
 };
 
 // get post by id

@@ -30,6 +30,10 @@ const Post = new Schema({
     }]
 });
 
+Post.statics.findByCategory = function (category){
+    return this.find({category: category})
+}
+
 Post.methods.narrativeComments = function() {
     return this.comments.map((com) => `${com.username} says that ${com.comment}`)
 }
