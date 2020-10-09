@@ -1,0 +1,5 @@
+{ "username": "sarah", "title": "React is the best", "modified_date": "2019-09-20", "category": "code", "content": "I'm learning react and I love it!. It makes javascript so much nicer to write. I love the component architecture." }
+{ "username": "sarah", "title": "Why I Meditate", "modified_date": "2019-08-30", "category": "health", "content": "I've meditated daily for the past 30 years, and I think it has the single biggest impact on the quality of my life" }
+{ "username": "sarah", "title": "Github is my friend", "modified_date": "2020-02-10", "category": "code", "content": "When I first started learning Github, it was not a happy relationship." } 
+{ "username": "leon", "title": "Bulma makes styling easy", "modified_date": "2020-01-30", "category": "code", "content": "I'm not a front end kind of girl. I want to like styling - I feel like I'm a creative persona and it should be fun, but CSS and I just don't get along." }
+{ "username": "leon", "title": "The best pizza in town", "modified_date": "2019-12-19", "category": "food", "content": "Who doesn't love pizza? I found the best pizza in town yesterday and I'm so excited about it!" }
