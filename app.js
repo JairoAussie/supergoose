@@ -4,13 +4,19 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
 const postRouter = require('./routes/posts_routes');
 
-const port = process.env.port || 3009;
+const port = process.env.PORT || 3009;
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const dbConn = "mongodb://localhost/blog_app"
+// If we are not running in production, load our local .env
+if(process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
+const dbConn = process.env.MONGODB_URI || "mongodb://localhost/blog_app"
+
 // Set three properties to avoid deprecation warnings:
 // useNewUrlParser: true
 // useUnifiedTopology: true
@@ -37,6 +43,9 @@ app.get('/', (req, res) => {
 })
 
 app.use('/posts', postRouter);
+
+console.log("port: ",process.env.PORT)
+console.log(process.env)
 
 app.listen(port, () => {
   console.log(`Blog express app listening on port ${port}`);
