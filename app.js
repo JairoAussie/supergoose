@@ -36,7 +36,7 @@ mongoose.connect(
     }
   }
 )
-
+//get/ request
 app.get('/', (req, res) => {
   console.log("get on /");
   res.send("got your request");
